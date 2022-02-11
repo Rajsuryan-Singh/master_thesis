@@ -1,3 +1,4 @@
 data/*
 archive/*
-
+access_token.txt
+scripts/__pycache__/
