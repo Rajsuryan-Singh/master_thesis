@@ -13,7 +13,7 @@ FILT_VID_ANNOT_PATH = "data/urbansas_filtered/video_annotations.csv"
 FILT_AUD_ANNOT_PATH = "data/urbansas_filtered/audio_annotations.csv"
 FILT_VID_DIR = "data/urbansas_filtered/merged/"
 max_vehicles = 2
-min_dur = 3
+min_dur = 4
 
 if not os.path.isdir(FILT_VID_DIR):
     os.makedirs(FILT_VID_DIR)
