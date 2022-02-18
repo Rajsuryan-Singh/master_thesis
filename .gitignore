@@ -3,3 +3,4 @@ data/urbansas_filtered/*
 archive/*
 access_token.txt
 scripts/__pycache__/
+papers/*
