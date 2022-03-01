@@ -1,0 +1,3 @@
+[submodule "yolor_baseline/yolor"]
+	path = yolor_baseline/yolor
+	url = https://github.com/WongKinYiu/yolor.git

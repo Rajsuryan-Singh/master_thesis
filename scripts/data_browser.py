@@ -2,11 +2,14 @@ import sys
 import pandas as pd
 import cv2 as cv
 import numpy as np
+from math import floor
 from ffpyplayer.player import MediaPlayer
 from tkinter.filedialog import askopenfilename
+
 # get video and audio annotations
-VID_ANNOT = pd.read_csv("data/urbansas/video_annotations.csv").drop(columns="Unnamed: 0")
-AUD_ANNOT = pd.read_csv("data/urbansas/audio_annotations.csv").drop(columns="Unnamed: 0")
+filtered = "_filtered"   # set to "" for unfiltered, "_filtered" for filtered
+VID_ANNOT = pd.read_csv(f"data/urbansas{filtered}/video_annotations.csv").drop(columns="Unnamed: 0")
+AUD_ANNOT = pd.read_csv(f"data/urbansas{filtered}/audio_annotations.csv").drop(columns="Unnamed: 0")
 
 def main(arg):
 
@@ -19,14 +22,14 @@ def main(arg):
         show_vid_wlabels(filepath)
     elif len(arg) == 2:
         filename = arg[1]
-        filepath = f"data/urbansas/merged/{filename}.mp4"
+        filepath = f"data/urbansas{filtered}/merged/{filename}.mp4"
         show_vid_wlabels(filepath)
     elif len(arg) == 3 and arg[1] == "all":
         # loop through all videos 
         start = int(arg[2])
         for i, filepath in enumerate(videos):
             if i >= start:
-                filepath = f"data/urbansas/merged/{filepath}.mp4"
+                filepath = f"data/urbansas{filtered}/merged/{filepath}.mp4"
                 show_vid_wlabels(filepath)
             with open("last_vid_idx.txt", "w") as f:
                 f.write(str(i))
@@ -62,8 +65,8 @@ def show_vid_wlabels(filepath):
     frame_labels = [[] for frame in range(nframes)]                # initialise framewise audio labels
     for i, row in aud_annot.iterrows():
         label, start, end = row["label"], row["start"], row["end"]
-        start_f = int(round(start*fps))
-        end_f = int(round(end*fps))
+        start_f = int(floor(start*fps))
+        end_f = int(floor(end*fps))
         for idx in range(start_f, end_f):
             frame_labels[idx].append(label)
                          

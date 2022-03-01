@@ -57,7 +57,7 @@ def main():
                 # get annotations 
                 vid_annot_seg, aud_annot_seg = get_segment_annotations(seg, filename, vid_annot, aud_annot)
 
-                # modify filename column for vidverbose=False, logger=Noneeo and audio annotations
+                # modify filename column for video and audio annotations
                 vid_annot_seg["filename"] = [f"{filename}_{i}"]*vid_annot_seg.shape[0]
                 aud_annot_seg["filename"] = [f"{filename}_{i}"]*aud_annot_seg.shape[0]
 
@@ -141,14 +141,14 @@ def get_segment_annotations(segment, filename, vid_annot, aud_annot):
     aud_annot_f = aud_annot[aud_annot["filename"] == filename]
 
     # get annotations for segment
-    start, end = segment
+    start, end = segment                                                # frame_id of frames  
     start_time, end_time = (start-1)*0.5, (end - 1)*0.5
 
     # video annotations
     vid_annot_seg = vid_annot_f[(vid_annot_f.frame_id >= start) & (vid_annot_f.frame_id <= end)]
-    vid_annot_seg["time"]-=start_time                                   # set the start time as 0                           
-    vid_annot_seg["frame_id"]-=(start + 1)                              # set the first frame id as 1
-
+    vid_annot_seg["frame_id"]-=(start - 1)                              # set the first frame id as 1
+    vid_annot_seg["time"] = (vid_annot_seg["frame_id"]-1)*0.5           # redifine time wrt frame_ids                                                         
+    
     # audio annotations
     # filter annotations that overlap with the segment
     aud_annot_seg = aud_annot_f[(aud_annot_f.end >= start_time) & (aud_annot_f.start <= end_time)]

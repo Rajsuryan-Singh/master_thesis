@@ -4,3 +4,5 @@ archive/*
 access_token.txt
 scripts/__pycache__/
 papers/*
+yolor_baseline/urbansas_filtered/*
+yolor_baseline/urbansas_filtered.zip
