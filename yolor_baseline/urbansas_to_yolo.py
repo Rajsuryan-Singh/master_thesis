@@ -97,6 +97,10 @@ def main():
             sub_annot["y"]/=height
             sub_annot["h"]/=height
 
+            # change x and y from top-left to centre
+            sub_annot["x"]+=(sub_annot["w"]/2)
+            sub_annot["y"]+=(sub_annot["h"]/2)
+
 
  
             for frame_num in sub_annot["frame_num"]:

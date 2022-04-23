@@ -6,3 +6,8 @@ scripts/__pycache__/
 papers/*
 yolor_baseline/urbansas_filtered/*
 yolor_baseline/urbansas_filtered.zip
+yolor_baseline/inference/*
+yolor_baseline/val_inference.zip
+__pycache*
+yolor_baseline/test.ipynb
+RVSL/*
