@@ -7,7 +7,7 @@ from ffpyplayer.player import MediaPlayer
 from tkinter.filedialog import askopenfilename
 
 # get video and audio annotations
-filtered = "_filtered"   # set to "" for unfiltered, "_filtered" for filtered
+filtered = ""   # set to "" for unfiltered, "_filtered" for filtered
 VID_ANNOT = pd.read_csv(f"data/urbansas{filtered}/video_annotations.csv").drop(columns="Unnamed: 0")
 AUD_ANNOT = pd.read_csv(f"data/urbansas{filtered}/audio_annotations.csv").drop(columns="Unnamed: 0")
 
